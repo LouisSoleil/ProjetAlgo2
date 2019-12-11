@@ -2,7 +2,7 @@ struct TPlateau: Plateau {
 	
 	typealias ATPiece = Piece
 	
-	var jeu : [ATPiece?] = TPartie().plateau
+	var jeu : [[ATPiece?]] = TPartie().plateau
 
 	// La position donnée en paramètre est-elle occupée ? 
 	// Pre : x, y doivent correspondre à une coordonnée du plateau
