@@ -1,7 +1,7 @@
 
 protocol Plateau  {
 
-	associatedtype ATATPiece : ATPiece
+	associatedtype ATPiece : ATPiece
 
 	func isOccupied (x : Int , y : Int) -> Bool 
 // La position donnée en paramètre est-elle occupée ? 
