@@ -1,5 +1,5 @@
 struct TPiece {
-
+	 typealias TPiece = Piece
 	init() 
 // Initialise la pièce avec une couleur et une forme.
 

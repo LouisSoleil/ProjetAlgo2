@@ -1,9 +1,10 @@
 protocol Partie {
 
+	type
 // Initialise un plateau vide qui est une grille de taille 4x4, ainsi que 2 joueurs et le premier Joueur courant 
 // Aucune case n’est occupée 
 // Chaque position peut prendre soit une pièce soit vide
-	init() {}
+	init() 
 
 	
 	var JoueurCourant : Joueur {get}
