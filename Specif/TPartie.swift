@@ -1,11 +1,13 @@
 struct TPartie : Partie {
 
+	private var plateau : TPlateau
+
 // Initialise un plateau vide qui est une grille de taille 4x4, ainsi que 2 joueurs et le premier Joueur courant 
 // Aucune case n’est occupée 
 // Chaque position peut prendre soit une pièce soit vide
 	init(){
 
-		var plateau : [[Piece?]] = [[nil,nil,nil,nil],[nil,nil,nil,nil],[nil,nil,nil,nil],[nil,nil,nil,nil]] //Création tableau vide
+		self.plateau = TPlateau() //Création tableau vide
 	}
 
 	var JoueurCourant : Joueur {
