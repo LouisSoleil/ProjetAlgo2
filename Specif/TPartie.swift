@@ -1,10 +1,10 @@
-struct TPartie {
+struct TPartie : Partie {
 
 // Initialise un plateau vide qui est une grille de taille 4x4, ainsi que 2 joueurs et le premier Joueur courant 
 // Aucune case n’est occupée 
 // Chaque position peut prendre soit une pièce soit vide
 	init(){
-		var pos1 : [[Int](2), Piece?] = [[0,0], Nil]
+		/*var pos1 : [[Int](2), Piece?] = [[0,0], Nil]
 		var pos2 : [[Int](2), Piece?] = [[0,1], Nil]
 		var pos3 : [[Int](2), Piece?] = [[0,2], Nil]
 		var pos4 : [[Int](2), Piece?] = [[0,3], Nil]
@@ -20,13 +20,23 @@ struct TPartie {
 		var pos14 : [[Int](2), Piece?] = [[3,1], Nil]
 		var pos15 : [[Int](2), Piece?] = [[3,2], Nil]
 		var pos16 : [[Int](2), Piece?] = [[3,3], Nil]
-		var plateau : [[Int](2), Piece?](16) = [pos1, pos2, pos3, pos4, pos5, pos6, pos7, pos8, pos9, pos10, pos11, pos12, pos13, pos14, pos15, pos16]
+		var plateau : [[Int](2), Piece?](16) = [pos1, pos2, pos3, pos4, pos5, pos6, pos7, pos8, pos9, pos10, pos11, pos12, pos13, pos14, pos15, pos16]*/
+
+		var plateau : [Piece?] = [[nil,nil,nil,nil],[nil,nil,nil,nil],[nil,nil,nil,nil],[nil,nil,nil,nil]] //Création tableau vide
 	}
 
-	var JoueurCourant : Joueur {get}
+	var JoueurCourant : Joueur {
+		get{
+			return self.JoueurCourant
+			} 
+	}
 // Définit le joueur qui doit poser une pièce
 
-	var FinDePartie : Bool {get}
+	var FinDePartie : Bool {
+		get{
+			return self.FinDePartie
+		}
+	}
 // Renvoie True si la partie est terminé, false sinon
 
 	func AleaJoueur(j1 : Joueur , j2 : Joueur) -> Joueur 

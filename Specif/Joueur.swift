@@ -1,14 +1,10 @@
-struct TJoueur {
+protocol Joueur {
 
 	init(c : eCouleur) 
 // Initialise un joueur avec une couleur et un set de 8 pièces.
 // Le joueur a 2 sphères, 2 cylindres, 2 cubes et 2 cônes
 
-	var couleur : eCouleur {
-		get {
-			return self.couleur
-		}
-	}
+	var couleur : eCouleur {get}
 // La couleur du joueur 
 
 	func EstDispoPiece (p : Piece) -> Bool
