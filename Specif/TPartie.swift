@@ -22,13 +22,27 @@ struct TPartie : Partie {
 	}
 // Renvoie True si la partie est terminé, false sinon
 
-	func AleaJoueur(j1 : Joueur , j2 : Joueur) -> Joueur 
-// Choix du joueur qui commence la partie
-// Post : le joueur choisis devient donc le joueur courant 
+	func AleaJoueur(j1 : Joueur , j2 : Joueur) -> Joueur {
+		var joueurC : Int
+		self.joueurC = Int.random(in: 0 ..< 2) + 1
+		if self.joueurC == 1 {
+			return j1 
+		}
+		else{
+			return j2
+		}
+	}
 
-	mutating func ChangerJoueurCourant()
+	mutating func ChangerJoueurCourant(){
 // Change le joueur courant une fois que ce dernier à posé sa pièce
 // Post : Le joueur adverse devient donc le joueur courant  
+		if self.JoueurCourant == Noir{
+			JoueurCourant = Blanc
+		}
+		else {
+			JoueurCourant = Noir
+		}
+	}
 
 
 	func Gagnant() -> Joueur 
