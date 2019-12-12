@@ -3,7 +3,7 @@ struct TPlateau: Plateau {
 	typealias ATPiece = Piece
 	
 	init(){
-		plateau : [[Pieces?]] = [ [nil,nil,nil,nil],[nil,nil,nil,nil],[nil,nil,nil,nil],[nil,nil,nil,nil] ]
+		var jeu : [[Pieces?]] = [ [nil,nil,nil,nil],[nil,nil,nil,nil],[nil,nil,nil,nil],[nil,nil,nil,nil] ]
 	}
 	//var jeu : [[ATPiece?]] = TPartie().plateau
 
@@ -85,7 +85,58 @@ struct TPlateau: Plateau {
 	// Permet de savoir si une pièce de la même forme du joueur adverse est présente dans la même région
 	// Renvoie False si une pièce adverse de la même forme se trouve dans la même region, True sinon
 	// Pre : x et y sont des entiers positifs et doivent correspondre aux coordonnées d'une position du plateau.
-	func RegionDispo (p :ATPiece , x : Int , y : Int) -> Bool {}
+	func RegionDispo (p :ATPiece , x : Int , y : Int) -> Bool {
+		var check : Bool = true
+		if (x==0 || x==1) {
+			if (y==1 || y==0){
+				var i : Int = 0
+				var j : Int = 0
+				while (i<1 && check==true){
+					while (j<1 && check==true){
+						if jeu[i][j].forme==p.forme && jeu[i][y].couleur!=p.couleur {
+							check=false
+						}
+					}
+				}
+			}
+			if (y==2 || y==3){
+				var i : Int = 0
+				var j : Int = 0
+				while (i<1 && check==true) {
+					while (j<1 && check==true){
+						if jeu[i][j].forme==p.forme && jeu[i][y].couleur!=p.couleur {
+							check=false
+						}
+					}
+				}
+			}
+		}
+		if (x==2 || x==3) {
+			if (y==1 || y==0){
+				var i : Int = 0
+				var j : Int = 0
+				while (i<1 && check==true) {
+					while (j<1 && check==true){
+						if jeu[i][j].forme==p.forme && jeu[i][y].couleur!=p.couleur {
+							check=false
+						}
+					}
+				}
+			}
+			if (y==2 || y==3){
+				var i : Int = 0
+				var j : Int = 0
+				while (i<1 && check==true) {
+					while (j<1 && check==true){
+						if jeu[i][j].forme==p.forme && jeu[i][y].couleur!=p.couleur {
+							check=false
+						}
+					}
+				}
+			}
+		}
+		return check
+	}
 
 	// Renvoie True si la ligne des coordonnées de la case contient 4ATPieces de formes différentes, False sinon 
 	// Pre : x et y sont des entiers positifs et doivent correspondre aux coordonnées d'une position du plateau.
