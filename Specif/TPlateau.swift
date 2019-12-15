@@ -1,4 +1,4 @@
-struct TPlateau: Plateau {
+struct TPlateau:Plateau{
 	
 	typealias ATPiece = Piece
 	
@@ -140,16 +140,107 @@ struct TPlateau: Plateau {
 
 	// Renvoie True si la ligne des coordonnées de la case contient 4ATPieces de formes différentes, False sinon 
 	// Pre : x et y sont des entiers positifs et doivent correspondre aux coordonnées d'une position du plateau.
-	func LigneRemplie (x : Int , y : Int) -> Bool {}
-
-
+	func LigneRemplie (x : Int , y : Int) -> Bool {
+		var check : Bool=true	
+		var i : Int = 0
+		var tableauPiece : ATPiece = []
+		while (i<3 && check==true){
+			tableauPiece.append(jeu[i][y])
+			if tableauPiece.contains(jeu[i][y].forme) {
+				check=false
+			}
+			i+=1
+		}
+		return check
+	}
 	// Renvoie True si la colonne des coordonnées de la case contient 4ATPieces de formes différentes, False sinon 
 	// Pre : x et y sont des entiers positifs et doivent correspondre aux coordonnées d'une position du plateau.
-	func ColonneRemplie (x : Int , y : Int) -> Bool{} 
-
+	func ColonneRemplie (x : Int , y : Int) -> Bool{
+		var check : Bool=true	
+		var i : Int = 0
+		var tableauPiece : ATPiece = []
+		while (i<3 && check==true){
+			tableauPiece.append(jeu[x][i])
+			if tableauPiece.contains(jeu[x][i].forme) { //Si le plateau contient déjà cette forme
+				check=false
+			}
+			i+=1
+		}
+		return check
+	}
 	// Renvoie True si la ligne des coordonnées de la case contient 4ATPieces de formes différentes, False sinon 
 	// Pre : x et y sont des entiers positifs et doivent correspondre aux coordonnées d'une position du plateau.
-	func RegionRemplie (x : Int , y : Int) -> Bool {}
-
-	
+	func RegionRemplie (x : Int , y : Int) -> Bool {
+		var check : Bool = true
+		var tableauPiece : ATPiece = []
+		if (x==0 || x==1) {
+			if (y==0 || y==1){
+				var i : Int = 0
+				var j : Int = 0
+				while (i<1 && check=true){
+					while (j<1 && check=true){
+						if !jeu[i][j].esEmpty() { //Vérifie non vide
+							tableauPiece.append(jeu[i][j])
+							if tableauPiece.contains(jeu[i][j]){
+								check=false
+							}
+						}
+						j+=1
+					}
+				i+=1
+				}
+			}
+			else {//y=2 ou y=3
+				var i : Int = 0
+				var j : Int = 2
+				while (i<1 && check=true){
+					while (j<3 && check=true){
+						if !jeu[i][j].esEmpty() { //Vérifie non vide
+							tableauPiece.append(jeu[i][j])
+							if tableauPiece.contains(jeu[i][j]){
+								check=false
+							}
+						}
+						j+=1
+					}
+				i+=1
+				}
+			}
+		}
+		else { //x==2 ou x==3
+			if (y==0 || y==1){
+				var i : Int = 2
+				var j : Int = 0
+				while (i<3 && check=true){
+					while (j<1 && check=true){
+						if !jeu[i][j].esEmpty() { //Vérifie non vide
+							tableauPiece.append(jeu[i][j])
+							if tableauPiece.contains(jeu[i][j]){
+								check=false
+							}
+						}
+						j+=1
+					}
+				i+=1
+				}
+			}
+			else {//y=2 ou y=3
+				var i : Int = 2
+				var j : Int = 2
+				while (i<3 && check=true){
+					while (j<3 && check=true){
+						if !jeu[i][j].esEmpty() { //Vérifie non vide
+							tableauPiece.append(jeu[i][j])
+							if tableauPiece.contains(jeu[i][j]){
+								check=false
+							}
+						}
+						j+=1
+					}
+				i+=1
+				}
+			}
+		}
+	return check
+	}
 }

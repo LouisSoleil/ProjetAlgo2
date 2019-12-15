@@ -1,5 +1,6 @@
 struct TJoueur {
 
+	
 	private var joueur : String
 	private var main : [Piece] = [eForme : Int]
 
@@ -41,6 +42,7 @@ struct TJoueur {
 		if EstDispoPiece(p : p) {
 			self.main[p] = self.main[p] - 1
 			return True
+		}
 		else{
 			return False
 		}
