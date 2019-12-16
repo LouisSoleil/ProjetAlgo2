@@ -48,7 +48,7 @@ struct TPartie : Partie {
 
 
 	func Gagnant() -> Joueur 
-// Renvoie le joueur qui qui a gagné
+// Renvoie le joueur qui a gagné
 // Post : un joueur a gagné si celui ci est le dernier à avoir déposer une piéce a une position et qu'à cette position LigneRemplie = True ou ColonneRemplie = True ou RegionRemplie = True.
 //        Ce même joueur à gagné si le joueur adverse ne peux plus poser de pièces.
 

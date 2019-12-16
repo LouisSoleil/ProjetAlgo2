@@ -144,10 +144,10 @@ struct TPlateau:Plateau{
 		var check : Bool=true	
 		var i : Int = 0
 		var tableauPiece : ATPiece = []
-		while (i<3 && check==true){
+		while (i<3 && check == true){
 			tableauPiece.append(jeu[i][y])
 			if tableauPiece.contains(jeu[i][y].forme) {
-				check=false
+				check = false
 			}
 			i+=1
 		}
@@ -156,10 +156,10 @@ struct TPlateau:Plateau{
 	// Renvoie True si la colonne des coordonnées de la case contient 4ATPieces de formes différentes, False sinon 
 	// Pre : x et y sont des entiers positifs et doivent correspondre aux coordonnées d'une position du plateau.
 	func ColonneRemplie (x : Int , y : Int) -> Bool{
-		var check : Bool=true	
+		var check : Bool = true	
 		var i : Int = 0
 		var tableauPiece : ATPiece = []
-		while (i<3 && check==true){
+		while (i<3 && check == true){
 			tableauPiece.append(jeu[x][i])
 			if tableauPiece.contains(jeu[x][i].forme) { //Si le plateau contient déjà cette forme
 				check=false
