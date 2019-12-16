@@ -38,9 +38,12 @@ struct TJoueur {
 
 
 	func RetirerPiece (p : Piece) -> Bool {
-		var cpt : Int = 0
 		if EstDispoPiece(p : p) {
-			self.main[p] = self.main[p] - 1
+			for (cle, valeur) in main {
+				if p.eForme == cle {
+					valeur = valeur - 1
+				}
+			}
 			return True
 		}
 		else{
@@ -50,6 +53,16 @@ struct TJoueur {
 // Renvoie True lorsque la pièce a bien était retirée, False sinon.
 
 	func ChercherPiece (forme : String) -> Piece? { 
+		if EstDispoPiece(forme : p) {
+			for cle in main {
+				if cle.eForme == forme.eForme {
+					return cle
+				}
+			}
+		}
+		else {
+			return nil 
+		}
 	}
 // Renvoie la pièce de la forme passée en paramètre, renvoie vide si le joueur ne possède pas la pièce
 
