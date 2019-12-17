@@ -52,7 +52,7 @@ struct TJoueur {
 	}
 // Renvoie True lorsque la pièce a bien était retirée, False sinon.
 
-	func ChercherPiece (forme : String) -> Piece? { 
+	func ChercherPiece (forme : TPiece) -> Piece? { 
 		if EstDispoPiece(forme : p) {
 			for cle in main {
 				if cle.eForme == forme.eForme {

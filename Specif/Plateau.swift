@@ -1,17 +1,17 @@
 
 protocol Plateau  {
 
-	associatedtype ATPiece : ATPiece
+	associatedtype ATPiece : Piece
 
 	func isOccupied (x : Int , y : Int) -> Bool 
 // La position donnée en paramètre est-elle occupée ? 
 // Pre : x, y doivent correspondre à une coordonnée du plateau
 
-	mutating func PlacerATPiece (p : ATATPiece , x : Int , y : Int) 
+	mutating func PlacerATPiece (p : ATPiece , x : Int , y : Int) 
 // Place une pièce donnée à la position donnée en paramètre
 // Pre : x, y sont des entiers positifs qui doivent correspondre à une coordonnée du plateau 
 
-	func QuelleATPiece (x : Int , y : Int) -> ATATPiece? 
+	func QuelleATPiece (x : Int , y : Int) -> ATPiece? 
 // Pre : x et y sont des entiers positifs qui sont des coordonnées appertenant au plateau
 // Permet de savoir quelle pièce se situe à la position donnée en paramètre 
 // Renvoie la ATPiece se situant à la case de coordonnées passées en paramètre. Renvoie vide si aucune pièce se trouve à cette position 

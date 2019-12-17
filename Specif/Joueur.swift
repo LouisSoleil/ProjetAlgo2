@@ -14,7 +14,7 @@ protocol Joueur {
 	func RetirerPiece (p : Piece) -> Bool 
 // Renvoie True lorsque la pièce a bien était retirée, False sinon.
 
-	func ChercherPiece (forme : String) -> Piece?  
+	func ChercherPiece (forme : TPiece) -> TPiece?  
 // Renvoie la pièce de la forme passée en paramètre, renvoie vide si le joueur ne possède pas la pièce
 
 	func PieceDispo() -> [TPiece.eForme] 
