@@ -3,10 +3,10 @@ protocol Piece {
 	init() 
 // Initialise la pièce avec une couleur et une forme.
 
-	var couleur : eCouleur {get}
+	var couleur : TPiece.eCouleur {get}
 // La Couleur de la pièce
 
-	var forme : eForme {get}
+	var forme : TPiece.eForme {get}
 // La forme de la pièce
 
 }

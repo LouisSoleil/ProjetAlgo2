@@ -43,7 +43,7 @@ struct TJoueur {
 				if p.eForme == cle {
 					valeur = valeur - 1
 				}
-			}sz
+			}
 			return True
 		}
 		else{

@@ -1,10 +1,10 @@
 protocol Joueur {
 
-	init(c : eCouleur) 
+	init(c : TPiece.eCouleur) 
 // Initialise un joueur avec une couleur et un set de 8 pièces.
 // Le joueur a 2 sphères, 2 cylindres, 2 cubes et 2 cônes
 
-	var couleur : eCouleur {get}
+	var couleur : TPiece.eCouleur {get}
 // La couleur du joueur 
 
 	func EstDispoPiece (p : Piece) -> Bool
@@ -17,7 +17,7 @@ protocol Joueur {
 	func ChercherPiece (forme : String) -> Piece?  
 // Renvoie la pièce de la forme passée en paramètre, renvoie vide si le joueur ne possède pas la pièce
 
-	func PieceDispo() -> [eForme] 
+	func PieceDispo() -> [TPiece.eForme] 
 // Renvoie la liste des formes de chaques pièces que possède le joueur sous forme de string
 
 
