@@ -1,4 +1,7 @@
-struct TPartie : Partie {
+public struct TPartie : Partie {
+
+	typealias ATJoueur = TJoueurjou
+	typealias ATPlateau = TPlateau
 
 	var plateau : TPlateau
 
@@ -9,7 +12,7 @@ struct TPartie : Partie {
 		self.plateau = TPlateau() //Création tableau vide
 	}
 
-	var JoueurCourant : Joueur {
+	var JoueurCourant : TJoueur {
 		get{
 			return self.JoueurCourant
 			} 
@@ -23,7 +26,7 @@ struct TPartie : Partie {
 	}
 // Renvoie True si la partie est terminé, false sinon
 
-	func AleaJoueur(j1 : Joueur , j2 : Joueur) -> Joueur {
+	func AleaJoueur(j1 : TJoueur , j2 : TJoueur) -> TJoueur {
 		var joueurC : Int
 		self.joueurC = Int.random(in: 0 ..< 2) + 1
 		if self.joueurC == 1 {
@@ -46,7 +49,14 @@ struct TPartie : Partie {
 	}
 
 
-	func Gagnant() -> Joueur {}
+	func Gagnant() -> TJoueur {
+		if JoueurCourant.eCouleur == Blanc {
+			return
+		}
+		else {
+			return 
+		}
+	}
 // Renvoie le joueur qui a gagné
 // Post : un joueur a gagné si celui ci est le dernier à avoir déposer une piéce a une position et qu'à cette position LigneRemplie = True ou ColonneRemplie = True ou RegionRemplie = True.
 //        Ce même joueur à gagné si le joueur adverse ne peux plus poser de pièces.

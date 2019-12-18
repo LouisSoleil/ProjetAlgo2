@@ -1,17 +1,19 @@
 protocol Partie {
+
+	associatedtype ATJoueur = Joueur 
 // Initialise un plateau vide qui est une grille de taille 4x4, ainsi que 2 joueurs et le premier Joueur courant 
 // Aucune case n’est occupée 
 // Chaque position peut prendre soit une pièce soit vide
 	init() 
 
 	
-	var JoueurCourant : Joueur {get}
+	var JoueurCourant : ATJoueur {get}
 // Définit le joueur qui doit poser une pièce
 
 	var FinDePartie : Bool {get}
 // Renvoie True si la partie est terminé, false sinon
 
-	func AleaJoueur(j1 : Joueur , j2 : Joueur) -> Joueur 
+	func AleaJoueur(j1 : ATJoueur , j2 : ATJoueur) -> ATJoueur 
 // Choix du joueur qui commence la partie
 // Post : le joueur choisis devient donc le joueur courant 
 
@@ -20,7 +22,7 @@ protocol Partie {
 // Post : Le joueur adverse devient donc le joueur courant  
 
 
-	func Gagnant() -> Joueur 
+	func Gagnant() -> ATJoueur 
 // Renvoie le joueur qui qui a gagné
 // Post : un joueur a gagné si celui ci est le dernier à avoir déposer une piéce a une position et qu'à cette position LigneRemplie = True ou ColonneRemplie = True ou RegionRemplie = True.
 //        Ce même joueur à gagné si le joueur adverse ne peux plus poser de pièces.

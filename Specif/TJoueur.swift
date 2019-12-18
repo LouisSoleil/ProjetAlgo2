@@ -1,8 +1,9 @@
-struct TJoueur {
+public struct TJoueur : Joueur {
 
-	
+	typealias ATPiece = TPiece
+
 	private var joueur : String
-	private var main : [Piece] = [eForme : Int]
+	private var main : [TPiece] = [eForme : Int]
 
 	enum Erreur : Error {
         case mauvaisparametre
@@ -12,7 +13,7 @@ struct TJoueur {
 	// Le joueur a 2 sphères, 2 cylindres, 2 cubes et 2 cônes
 
 	init(c : eCouleur) {
-		guard (self.eCouleur == Blanc || self.eCouleur == Noir) else {throw Erreur.mauvaisparametre}
+		guard (self.eCouleur == Blanc || self.eCouleur == Noir) else {throws Erreur.mauvaisparametre}
 		if c == Blanc {
 			self.joueur = Blanc
 			self.main = [eForme.Cube : 2, eForme.Cone : 2, eForme.Cylindre : 2, eForme.Sphère : 2]
@@ -30,29 +31,29 @@ struct TJoueur {
 	}
 // La couleur du joueur 
 
-	func EstDispoPiece (p : Piece) -> Bool{
-		guard (p.eForme == Cube | p.eForme == Cone | p.eForme == Cylindre | p.eForme == Sphere) else {throw Erreur.mauvaisparametre}
+	func EstDispoPiece (p : TPiece) -> Bool{
+		guard (p.eForme == Cube | p.eForme == Cone | p.eForme == Cylindre | p.eForme == Sphere) else {throws Erreur.mauvaisparametre}
 		return self.main[p] > 0
 	}
 // Renvoie False si le joueur ne possède pas cette pièce, True sinon.
 
 
-	func RetirerPiece (p : Piece) -> Bool {
+	func RetirerPiece (p : TPiece) -> Bool {
 		if EstDispoPiece(p : p) {
 			for (cle, valeur) in main {
 				if p.eForme == cle {
 					valeur = valeur - 1
 				}
 			}
-			return True
+			return true
 		}
 		else{
-			return False
+			return false
 		}
 	}
 // Renvoie True lorsque la pièce a bien était retirée, False sinon.
 
-	func ChercherPiece (forme : TPiece) -> Piece? { 
+	func ChercherPiece (forme : TPiece) -> TPiece? { 
 		if EstDispoPiece(forme : p) {
 			for cle in main {
 				if cle.eForme == forme.eForme {

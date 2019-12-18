@@ -1,11 +1,11 @@
-struct TPlateau:Plateau{
+struct TPlateau : Plateau{
 	
-	typealias ATPiece = Piece
+	typealias ATPiece = TPiece
 	
 	init(){
-		var jeu : [[Pieces?]] = [ [nil,nil,nil,nil],[nil,nil,nil,nil],[nil,nil,nil,nil],[nil,nil,nil,nil] ]
+		var jeu : [[TPiece?]] = [ [nil,nil,nil,nil],[nil,nil,nil,nil],[nil,nil,nil,nil],[nil,nil,nil,nil] ]
 	}
-	//var jeu : [[ATPiece?]] = TPartie().plateau
+	//var jeu : [[TPiece?]] = TPartie().plateau
 
 	// La position donnée en paramètre est-elle occupée ? 
 	// Pre : x, y doivent correspondre à une coordonnée du plateau
@@ -21,7 +21,7 @@ struct TPlateau:Plateau{
 
 	// Place une pièce donnée à la position donnée en paramètre
 	// Pre : x, y sont des entiers positifs qui doivent correspondre à une coordonnée du plateau 
-	mutating func PlacerPiece (p :ATPiece , x : Int , y : Int) {
+	mutating func PlacerPiece (p :TPiece , x : Int , y : Int) {
 		if !isOccupied(x:x, y:y){
 			jeu[x][y] = p
 		}
@@ -48,7 +48,7 @@ struct TPlateau:Plateau{
 // Permet de savoir si une pièce de la même forme du joueur adverse est présente sur la même ligne.
 // Renvoie False si une pièce adverse de la même forme se trouve dans la même ligne, True sinon
 // Pre : x et y sont des entiers positifs et doivent correspondre aux coordonnées d'une position du plateau.
-	func LigneDispo (p :ATPiece , x : Int , y : Int) -> Bool {
+	func LigneDispo (p :TPiece , x : Int , y : Int) -> Bool {
 		var i : Int = 0
 		var check : Bool = true
 		//var jCourant : TJoueur = TPartie().JoueurCourant
@@ -68,7 +68,7 @@ struct TPlateau:Plateau{
 // Permet de savoir si une pièce de la même forme du joueur adverse est présente sur la même colonne
 // Renvoie False si une pièce adverse de la même forme se trouve dans la même colonne, True sinon
 // Pre : x et y doivent correspondre aux coordonnées d'une position du plateau.
-	func ColonneDispo (p :ATPiece , x : Int , y : Int) -> Bool {
+	func ColonneDispo (p :TPiece , x : Int , y : Int) -> Bool {
 		var i : Int = 0
 		var check : Bool = true
 		while i<3 && check==true{
@@ -85,9 +85,9 @@ struct TPlateau:Plateau{
 	// Permet de savoir si une pièce de la même forme du joueur adverse est présente dans la même région
 	// Renvoie False si une pièce adverse de la même forme se trouve dans la même region, True sinon
 	// Pre : x et y sont des entiers positifs et doivent correspondre aux coordonnées d'une position du plateau.
-	func RegionDispo (p :ATPiece , x : Int , y : Int) -> Bool {
+	func RegionDispo (p :TPiece , x : Int , y : Int) -> Bool {
 		var check : Bool = true
-		if (x==0 || x==1) {
+		if (x==0 || x==1) { 
 			if (y==1 || y==0){
 				var i : Int = 0
 				var j : Int = 0
@@ -143,7 +143,7 @@ struct TPlateau:Plateau{
 	func LigneRemplie (x : Int , y : Int) -> Bool {
 		var check : Bool=true	
 		var i : Int = 0
-		var tableauPiece : ATPiece = []
+		var tableauPiece : TPiece = []
 		while (i<3 && check == true){
 			tableauPiece.append(jeu[i][y])
 			if tableauPiece.contains(jeu[i][y].forme) {
@@ -158,7 +158,7 @@ struct TPlateau:Plateau{
 	func ColonneRemplie (x : Int , y : Int) -> Bool{
 		var check : Bool = true	
 		var i : Int = 0
-		var tableauPiece : ATPiece = []
+		var tableauPiece : TPiece = []
 		while (i<3 && check == true){
 			tableauPiece.append(jeu[x][i])
 			if tableauPiece.contains(jeu[x][i].forme) { //Si le plateau contient déjà cette forme
@@ -172,7 +172,7 @@ struct TPlateau:Plateau{
 	// Pre : x et y sont des entiers positifs et doivent correspondre aux coordonnées d'une position du plateau.
 	func RegionRemplie (x : Int , y : Int) -> Bool {
 		var check : Bool = true
-		var tableauPiece : ATPiece = []
+		var tableauPiece : TPiece = []
 		if (x==0 || x==1) {
 			if (y==0 || y==1){
 				var i : Int = 0
