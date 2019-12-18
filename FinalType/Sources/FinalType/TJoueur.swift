@@ -2,12 +2,22 @@ public struct TJoueur : Joueur {
 
 	typealias ATPiece = TPiece
 
-	private var joueur : String {
+	var joueur : String {
 		get {
 			return self.joueur
 		}
+		set {
+			joueur = newValue
+		}
 	}
-	private var main : [TPiece] = [eForme : Int]
+	private var main : [String: Int] {
+		get {
+			return self.main
+		}
+		set{
+			main = newValue
+		}
+	}
 
 
 	enum Erreur : Error {
@@ -17,56 +27,49 @@ public struct TJoueur : Joueur {
 	// Initialise un joueur avec une couleur et un set de 8 pièces.
 	// Le joueur a 2 sphères, 2 cylindres, 2 cubes et 2 cônes
 
-	init(c : eCouleur) {
-		guard (self.eCouleur == Blanc || self.eCouleur == Noir) else {
+	public init (c : String) throws {
+		guard (c == "Blanc" || c == "Noir") else {
 			throw Erreur.mauvaisparametre
 		}
-		if c == Blanc {
-			self.joueur = Blanc
-			self.main = [eForme.Cube : 2, eForme.Cone : 2, eForme.Cylindre : 2, eForme.Sphère : 2]
+		if c == "Blanc" {
+			self.joueur = "Blanc"
+			self.main = [try TPiece(form : "Cube", coul : "Blanc").forme : 2, try TPiece(form : "Cone", coul : "Blanc").forme : 2, try TPiece(form : "Cylinde", coul : "Blanc").forme : 2, try TPiece(form : "Sphere", coul : "Blanc").forme : 2]
 		}
-		else if c == Noir{
-			self.joueur = Noir
-			self.main = [eForme.Cube : 2, eForme.Cone : 2, eForme.Cylindre : 2, eForme.Sphère : 2]
+		else if c == "Noir"{
+			self.joueur = "Noir"
+			self.main = [try TPiece(form : "Cube", coul : "Noir").forme : 2, try TPiece(form : "Cone", coul : "Noir").forme : 2, try TPiece(form : "Cylindre", coul : "Noir").forme : 2, try TPiece(form : "Sphere", coul : "Noir").forme : 2]
 		}
 	}
 
-	var couleur : eCouleur {
-		get {
-			return self.couleur
-		}
-	}
-// La couleur du joueur 
+	
 
-	func EstDispoPiece (p : TPiece) -> Bool{
-		guard (p.eForme == Cube | p.eForme == Cone | p.eForme == Cylindre | p.eForme == Sphere) else {
-			throw Erreur.mauvaisparametre
+	public func EstDispoPiece (p : TPiece)-> Bool {
+		for (cle, valeur) in main {
+			if p.forme == cle {
+				return valeur > 0
+			}
 		}
-		return self.main[p] > 0
 	}
 // Renvoie False si le joueur ne possède pas cette pièce, True sinon.
 
 
-	func RetirerPiece (p : TPiece) -> Bool {
+	public mutating func RetirerPiece (p : TPiece) {  
 		if EstDispoPiece(p : p) {
-			for (cle, valeur) in main {
-				if p.eForme == cle {
-					valeur = valeur - 1
+			for pion in main {
+				if p.forme == pion.key {
+					main[pion.key]! = main[pion.key]!-1
 				}
 			}
-			return true
-		}
-		else{
-			return false
 		}
 	}
+
 // Renvoie True lorsque la pièce a bien était retirée, False sinon.
 
-	func ChercherPiece (forme : TPiece) -> TPiece? { 
-		if EstDispoPiece(forme : p) {
-			for cle in main {
-				if cle.eForme == forme.eForme {
-					return cle
+	public func ChercherPiece (forme : TPiece) -> String? { 
+		if EstDispoPiece(p : forme) {
+			for pion in main {
+				if pion.key == forme.forme {
+					return pion.key
 				}
 			}
 		}
@@ -76,7 +79,7 @@ public struct TJoueur : Joueur {
 	}
 // Renvoie la pièce de la forme passée en paramètre, renvoie vide si le joueur ne possède pas la pièce
 
-	func PieceDispo() -> [eForme] {
+	public func PieceDispo() -> [String: Int] {
 		return self.main
 	}
 // Renvoie la liste des formes de chaques pièces que possède le joueur sous forme de string

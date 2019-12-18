@@ -1,6 +1,6 @@
 public struct TPartie : Partie {
 
-	typealias ATJoueur = TJoueurjou
+	typealias ATJoueur = TJoueur
 	typealias ATPlateau = TPlateau
 
 	var plateau : TPlateau
@@ -8,7 +8,7 @@ public struct TPartie : Partie {
 // Initialise un plateau vide qui est une grille de taille 4x4, ainsi que 2 joueurs et le premier Joueur courant 
 // Aucune case n’est occupée 
 // Chaque position peut prendre soit une pièce soit vide
-	init(){
+	public init(){
 		self.plateau = TPlateau() //Création tableau vide
 	}
 
@@ -16,8 +16,20 @@ public struct TPartie : Partie {
 		get{
 			return self.JoueurCourant
 			} 
+		set {
+			JoueurCourant = newValue
+		}
 	}
 // Définit le joueur qui doit poser une pièce
+
+	private var joueurPC : TJoueur{
+		get {
+			return self.joueurPC
+		}
+		set {
+			joueurPC = newValue
+		}
+	}
 
 	var FinDePartie : Bool {
 		get{
@@ -26,10 +38,9 @@ public struct TPartie : Partie {
 	}
 // Renvoie True si la partie est terminé, false sinon
 
-	func AleaJoueur(j1 : TJoueur , j2 : TJoueur) -> TJoueur {
-		var joueurC : Int
-		self.joueurC = Int.random(in: 0 ..< 2) + 1
-		if self.joueurC == 1 {
+	public func AleaJoueur(j1 : TJoueur , j2 : TJoueur) -> TJoueur {
+		let joueurC : Int = Int.random(in: 0 ..< 2) + 1
+		if joueurC == 1 {
 			return j1 
 		}
 		else{
@@ -37,25 +48,21 @@ public struct TPartie : Partie {
 		}
 	}
 
-	mutating func ChangerJoueurCourant(){
+	public mutating func ChangerJoueurCourant(){
 // Change le joueur courant une fois que ce dernier à posé sa pièce
-// Post : Le joueur adverse devient donc le joueur courant  
-		if self.JoueurCourant == Noir{
-			JoueurCourant = Blanc
+// Post : Le joueur adverse devient donc le joueur courant 
+		self.joueurPC = self.JoueurCourant 
+		if self.JoueurCourant.joueur == "Noir"{
+			JoueurCourant.joueur = "Blanc"
 		}
 		else {
-			JoueurCourant = Noir
+			JoueurCourant.joueur = "Noir"
 		}
 	}
 
 
-	func Gagnant() -> TJoueur {
-		if JoueurCourant.eCouleur == Blanc {
-			return
-		}
-		else {
-			return 
-		}
+	public func Gagnant() -> TJoueur {
+		return joueurPC
 	}
 // Renvoie le joueur qui a gagné
 // Post : un joueur a gagné si celui ci est le dernier à avoir déposer une piéce a une position et qu'à cette position LigneRemplie = True ou ColonneRemplie = True ou RegionRemplie = True.

@@ -1,6 +1,6 @@
 protocol Piece {
 
-	init() 
+	init(form : String, coul : String) throws
 // Initialise la pièce avec une couleur et une forme.
 
 	var couleur : String {get}

@@ -1,6 +1,6 @@
 public struct TPiece : Piece{
-	
-	var couleur : String {
+
+	public var couleur : String {
 		get {
 			return self.couleur
 		}
@@ -8,7 +8,7 @@ public struct TPiece : Piece{
 			couleur = newValue
 		}
 	}
-	var forme : String {
+	public var forme : String {
 		get {
 			return self.forme
 		}
@@ -17,38 +17,30 @@ public struct TPiece : Piece{
 		}
 	}
 
-	init() {
-		
-		self.forme = "Cube"
-		self.couleur = "Blanc"
-		self.forme = "Cone"
-		self.couleur = "Blanc"
-		self.forme = "Cylindre"
-		self.couleur = "Blanc"
-		self.forme = "Sphere"
-		self.couleur = "Blanc"
-		self.forme = "Cube"
-		self.couleur = "Noir"
-		self.forme = "Cone"
-		self.couleur = "Noir"
-		self.forme = "Cylindre"
-		self.couleur = "Noir"
-		self.forme = "Sphere"
-		self.couleur = "Noir"
+	enum Erreur : Error {
+        case mauvaisparametre
+    }
+
+	public init(form : String, coul : String) throws {
+		guard (form == "Cube" || form == "Cone" || form == "Cylindre" || form == "Sphere" || coul == "Blanc" || coul == "Noir" ) else {
+			throw Erreur.mauvaisparametre
+		}
+		self.couleur = coul
+		self.forme = form
 
 	}
 
 	/*
 	enum eForme {
-		case Cube (String)
-		case Cone (String) 
-		case Cylindre (String)
-		case Sphere (String)
+		case Cube 
+		case Cone  
+		case Cylindre 
+		case Sphere 
 	}
 
 	enum eCouleur {
-		case Blanc (String)
-		case Noir (String)
+		case Blanc 
+		case Noir 
 	}
 	*/
 }
