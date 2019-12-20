@@ -1,0 +1,15 @@
+Ajout dans les fonctions du main des paramètres
+Mauvaise écriture : partie.JoueurCourant
+Rajout Init dans TPlateau
+Modifications Tforme
+
+On ne pouvait pas utiliser verif() car on avait pas le plateau
+On a écris un Var plateau
+
+Dans Partie,elle est de type AnyObject car on veut forcer que ce soit une classe, on veut que ce soit un type référence
+
+dans TPiece, on a enlevé les eFormes et les eCouleurs car ils ne l'avaient pas mis dans le protocole
+donc modification de tout les types dans les autres spécif pour modifier les enums en string
+
+on a modifié les paramètres de l'init de TPièce pour pouvoir créer une pièce sinon on ne pouvait pas créer deux pièces de la même couleure 
+
