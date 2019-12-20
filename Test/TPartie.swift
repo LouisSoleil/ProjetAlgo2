@@ -6,9 +6,32 @@ public struct TPartie : Partie {
 	var plateau : TPlateau
 
 	var FinDePartie : Bool {
-		get {
-			return self.FinDePartie
+	// Renvoie True si la partie est terminé, false sinon
+ 		var check : Bool = false
+ 		let tab : [String:Int]=JoueurCourant.PieceDispo() //On récupère le tableau des pièces disponibles pour le joueur
+ 		var cpt : Int = 0 
+ 		for pion in tab {
+ 			if pion.value != 0 {
+ 				check = false
+ 			}
+ 			else {
+ 				check = true
+ 			}
+ 		
+ 		}
+ 		var i : Int = 0
+ 		var j : Int = 0
+ 		while i<4 && check==false{
+ 			while j<4 && check == false{
+ 				if (plateau.LigneRemplie(x:i,y:j) || plateau.ColonneRemplie(x:i,y:j) || plateau.RegionRemplie(x:i,y:j)){
+ 					check=true
+ 				}
+ 				j+=1
+ 			}
+ 		i+=1
 		}
+ 	return check
+ 			//Si le joueur courant ne peux plus poser de pièce l'autre joueur à gagner
 	}
 
 	private var joueur1: TJoueur?
@@ -35,10 +58,6 @@ public struct TPartie : Partie {
 		return self.joueurCourant
 	}
 
-	var FinDePartie : Bool {
-		return false // TODO: Vérifier les conditions de victoire
-	}
-// Renvoie True si la partie est terminé, false sinon
 
 	public func AleaJoueur(j1 : TJoueur , j2 : TJoueur) -> TJoueur {
 		let joueurC : Int = Int.random(in: 0 ..< 2) + 1
